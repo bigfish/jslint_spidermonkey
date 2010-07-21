@@ -19,19 +19,19 @@ fink installs the 'js' executable to /sw/bin to I symlinked /usr/bin/js to /sw/b
 
 USAGE:
 
-jslint /path/to/my/jfile.js
+> jslint /path/to/my/jfile.js
 
 will output jslint results to STDOUT
 
 VIM INTEGRATION
 
-"error format for JSLint
-set efm=Lint\ at\ line\ %l\ character\ %c:\ %m
+	"error format for JSLint
+	set efm=Lint\ at\ line\ %l\ character\ %c:\ %m
 
-set makeprg=jslint\ %
+	set makeprg=jslint\ %
 
 now you can go 
-:make
+	:make
 
 and jslint results will go into Quickfix, highlighting errors, allowing you to jump to them, etc.
 

@@ -1,7 +1,7 @@
 #!/bin/bash
-# requires environment variable $JSLINT_HOME
-# to be set to the directory containing this file
-# and jslint.js (spidermonkey version from http://whereisandy.com/code/jslint/)
+# requires jslint.js (spidermonkey version from http://whereisandy.com/code/jslint/)
+# to be in path
+
 if [ -z $1 ];then
 	echo "needs js file as argument"
 	exit 1

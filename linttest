@@ -1,0 +1,21 @@
+#!/bin/bash
+#very similar to jslint script, but this exits with error code if lint found
+# this is useful for using in Makefiles
+if [ -z $1 ];then
+	echo "No source directory given"
+	exit 1
+fi
+if [ ! -d $1 ];then
+	echo "Could not find directory: $1"
+	exit 1
+fi
+#right, now lets lint all the files 
+for file in $(find $1 -name '*.js');do
+	if [ $(jslint $file | grep -c Lint ) -gt 0 ];then
+		echo "found lint in file: $file"
+		#show lint report for this file
+		jslint $file
+		exit 1
+	fi
+done
+

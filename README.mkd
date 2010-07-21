@@ -1,3 +1,4 @@
+#JSLint helpers for *nix systems, Vim , and Make
 
 This repo contains a version of jslint.js hacked for spidermonkey use, taken from here:
 
@@ -17,13 +18,19 @@ fink installs the 'js' executable to /sw/bin to I symlinked /usr/bin/js to /sw/b
 
 > sudo ln -s /sw/bin/js /usr/bin/js
 
-USAGE:
+##Usage
 
 > jslint /path/to/my/jfile.js
 
 will output jslint results to STDOUT
 
-VIM INTEGRATION
+Recommended: put the directory of this repo on your PATH so that you can run the commands 
+without specifying their full path, eg. in my .profile
+
+	export JSLINT_HOME=$HOME/jslint
+	export PATH=$JSLINT_HOME:$PATH
+
+##VIM Integration
 
 	"error format for JSLint
 	set efm=Lint\ at\ line\ %l\ character\ %c:\ %m
@@ -34,4 +41,24 @@ now you can go
 	:make
 
 and jslint results will go into Quickfix, highlighting errors, allowing you to jump to them, etc.
+
+##Linting a directory
+
+use the included 'lintdir' script:
+
+> lintdir src
+
+which will output all errors for all .js files in 'src' dir
+
+##GNU Make integration
+
+Use the linttest script in your makefile like so
+
+	mymaketarget:	src/file1.js src/file2.js 
+		linttest src
+		makeotherstuff
+
+if the linttest fails, then Make will fail, and abort. 
+
+idea: put a call to 'make' in your pre-commit git hook, and you will never commit linty code!
 

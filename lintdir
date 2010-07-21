@@ -1,0 +1,15 @@
+#!/bin/bash
+#requires jslint script which lints given file and print output
+if [ -z $1 ];then
+	echo "No source directory given"
+	exit 1
+fi
+if [ ! -d $1 ];then
+	echo "Could not find directory: $1"
+	exit 1
+fi
+#right, now lets lint all the files 
+for file in $(find $1 -name '*.js');do
+	echo "checking file: $file"
+	jslint $file
+done

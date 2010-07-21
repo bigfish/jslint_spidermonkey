@@ -1,0 +1,37 @@
+
+This repo contains a version of jslint.js hacked for spidermonkey use, taken from here:
+
+[http://whereisandy.com/code/jslint/](http://whereisandy.com/code/jslint/)
+
+As well, it contains a wrapper shell script which allows you to pass a .js file (absolute path!) as argument.
+
+It requires spidermonkey
+
+[http://www.mozilla.org/js/spidermonkey/](http://www.mozilla.org/js/spidermonkey/)
+
+which I installed on my Mac with Fink.
+
+> fink install spidermonkey
+
+fink installs the 'js' executable to /sw/bin to I symlinked /usr/bin/js to /sw/bin/js
+
+> sudo ln -s /sw/bin/js /usr/bin/js
+
+USAGE:
+
+jslint /path/to/my/jfile.js
+
+will output jslint results to STDOUT
+
+VIM INTEGRATION
+
+"error format for JSLint
+set efm=Lint\ at\ line\ %l\ character\ %c:\ %m
+
+set makeprg=jslint\ %
+
+now you can go 
+:make
+
+and jslint results will go into Quickfix, highlighting errors, allowing you to jump to them, etc.
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+# requires environment variable $JSLINT_HOME
+# to be set to the directory containing this file
+# and jslint.js (spidermonkey version from http://whereisandy.com/code/jslint/)
+if [ -z $1 ];then
+	echo "needs js file as argument"
+	exit 1
+fi
+if [ ! -f $1 ];then
+	echo "could not find javascript file: $1"
+	exit 1
+fi
+#echo "running jslint on $1"
+cat $1 | jslint.js

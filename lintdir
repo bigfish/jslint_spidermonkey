@@ -10,6 +10,6 @@ if [ ! -d $1 ];then
 fi
 #right, now lets lint all the files 
 for file in $(find $1 -name '*.js');do
-	echo "checking file: $file"
-	jslint $file
+	#echo "checking file: $file"
+	jslint $file | prefixFileName.pl $file
 done

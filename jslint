@@ -14,7 +14,7 @@ OPTIONS="$JSLINT_HOME/default_options.js"
 
 #second parameter is (optional) jslint options (filepath of file with options in comment)
 #otherwise default options file is used (in same dir)
-if [ ! -z $2];then
+if [ ! -z $2 ];then
 
 if [ ! -f $2 ];then
 	echo "could not find options file: $2"

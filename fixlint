@@ -1,0 +1,36 @@
+#!/bin/bash
+#run lintdir and open first file with lint in vim
+OPTIONS=$JSLINT_HOME/default_options.js
+FILES=""
+#check for $JS_EDITOR else use EDITOR
+if [ -z $JS_EDITOR ];then
+JS_EDITOR=$EDITOR
+fi
+if [ -z $1 ];then
+	echo "No source directory given"
+	exit 1
+fi
+if [ ! -d $1 ];then
+	echo "Could not find directory: $1"
+	exit 1
+fi
+#second parameter is (optional) jslint options (filepath of file with options in comment)
+#otherwise default options file is used (in same dir)
+if [ ! -z $2 ];then
+
+if [ ! -f $2 ];then
+	echo "could not find options file: $2"
+	exit 1
+fi
+OPTIONS=$2
+fi
+
+#right, now lets lint all the files 
+for file in $(find $1 -name '*.js');do
+	if [ $(jslint $file $OPTIONS | grep -c 'Lint at') -gt 0 ];then
+		FILES="$FILES $file"
+	fi
+done
+
+#open files
+$JS_EDITOR $FILES

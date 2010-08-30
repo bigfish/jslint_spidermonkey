@@ -25,7 +25,7 @@ fi
 
 #right, now lets lint all the files 
 for file in $(find $1 -name '*.js');do
-	if [ $(jslint $file | grep -c Lint ) -gt 0 ];then
+	if [ $(jslint $file $OPTIONS | grep -c Lint ) -gt 0 ];then
 		echo "found lint in file: $file"
 		#show lint report for this file
 		jslint $file $OPTIONS | $JSLINT_HOME/fixLineNumbers.pl $(wc -l $OPTIONS) | prefixFileName.pl $file

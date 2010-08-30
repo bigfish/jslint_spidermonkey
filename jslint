@@ -23,4 +23,4 @@ fi
 OPTIONS=$2
 fi
 #we need to decrement the line numbers by the number of lines in the options file
-cat $OPTIONS $1 | jslint.js | $JSLINT_HOME/fixLineNumbers.pl $(wc -l $OPTIONS)
+cat $OPTIONS $1 "\n" | jslint.js | $JSLINT_HOME/fixLineNumbers.pl $(wc -l $OPTIONS)

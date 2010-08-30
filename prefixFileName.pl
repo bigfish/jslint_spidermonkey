@@ -14,6 +14,9 @@ while(<STDIN>)
 		
 			print $filename . ":" . $line . "\n";
 
+		} elsif ($line =~ /jslint: No problems found\./) {
+			#no news is good news
+			#print $filename . ":" . $line . "\n";
 		} else {
 			#echo any other lines
 			print $line . "\n";

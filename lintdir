@@ -1,5 +1,6 @@
 #!/bin/bash
 #requires jslint script which lints given file and print output
+OPTIONS=$JSLINT_HOME/default_options.js
 if [ -z $1 ];then
 	echo "No source directory given"
 	exit 1
@@ -8,8 +9,18 @@ if [ ! -d $1 ];then
 	echo "Could not find directory: $1"
 	exit 1
 fi
+#second parameter is (optional) jslint options (filepath of file with options in comment)
+#otherwise default options file is used (in same dir)
+if [ ! -z $2 ];then
+
+if [ ! -f $2 ];then
+	echo "could not find options file: $2"
+	exit 1
+fi
+OPTIONS=$2
+fi
 #right, now lets lint all the files 
 for file in $(find $1 -name '*.js');do
 	#echo "checking file: $file"
-	jslint $file | prefixFileName.pl $file
+	jslint $file $OPTIONS | $JSLINT_HOME/fixLineNumbers.pl $(wc -l $OPTIONS) | prefixFileName.pl $file
 done

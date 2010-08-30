@@ -22,5 +22,5 @@ if [ ! -f $2 ];then
 fi
 OPTIONS=$2
 fi
-
-cat $OPTIONS $1 | jslint.js
+#we need to decrement the line numbers by the number of lines in the options file
+cat $OPTIONS $1 | jslint.js | $JSLINT_HOME/fixLineNumbers.pl $(wc -l $OPTIONS)

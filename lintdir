@@ -1,6 +1,6 @@
 #!/bin/bash
 #requires jslint script which lints given file and print output
-OPTIONS=$JSLINT_HOME/default_options.js
+OPTIONS=$JSLINT_HOME/options/default_options.js
 if [ -z $1 ];then
 	echo "No source directory given"
 	exit 1

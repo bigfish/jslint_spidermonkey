@@ -1,7 +1,7 @@
 #!/bin/bash
 #very similar to jslint script, but this exits with error code if lint found
 # this is useful for using in Makefiles
-OPTIONS=$JSLINT_HOME/default_options.js
+OPTIONS=$JSLINT_HOME/options/default_options.js
 
 if [ -z $1 ];then
 	echo "No source directory given"

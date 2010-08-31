@@ -10,7 +10,7 @@ if [ ! -f $1 ];then
 	echo "could not find javascript file: $1"
 	exit 1
 fi
-OPTIONS="$JSLINT_HOME/default_options.js"
+OPTIONS="$JSLINT_HOME/options/default_options.js"
 
 #second parameter is (optional) jslint options (filepath of file with options in comment)
 #otherwise default options file is used (in same dir)

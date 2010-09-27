@@ -22,5 +22,5 @@ fi
 #right, now lets lint all the files 
 for file in $(find $1 -name '*.js');do
 	#echo "checking file: $file"
-	jslint $file $OPTIONS | $JSLINT_HOME/fixLineNumbers.pl $(wc -l $OPTIONS) | prefixFileName.pl $file
+	jslint $file $OPTIONS | prefixFileName.pl $file
 done

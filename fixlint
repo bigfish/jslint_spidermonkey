@@ -2,6 +2,8 @@
 #run lintdir and open first file with lint in vim
 OPTIONS=$JSLINT_HOME/default_options.js
 FILES=""
+CMD="p4 edit"
+
 #check for $JS_EDITOR else use EDITOR
 if [ -z $JS_EDITOR ];then
 JS_EDITOR=$EDITOR
@@ -28,9 +30,17 @@ fi
 #right, now lets lint all the files 
 for file in $(find $1 -name '*.js');do
 	if [ $(jslint $file $OPTIONS | grep -c 'Lint at') -gt 0 ];then
+		#if third param, execute CMD on file
+		if [ ! -z $3 ];then
+$CMD $file
+		fi
 		FILES="$FILES $file"
 	fi
 done
 
 #open files
+if [ -z $FILES ];then
+echo "no lint found!"
+else
 $JS_EDITOR $FILES
+fi

@@ -25,5 +25,5 @@ fi
 #we need to decrement the line numbers by the number of lines in the options file
 echo '
 ' > newline
-cat $OPTIONS $1 newline | jslint.js | $JSLINT_HOME/fixLineNumbers.pl "$(wc -l $OPTIONS)"
+cat $OPTIONS $1 newline | jslint.js | $JSLINT_HOME/fixLineNumbers.pl "$(wc -l $OPTIONS)" | prefixFileName4vim.pl "$JSFILE"
 rm newline

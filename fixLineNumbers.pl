@@ -3,6 +3,8 @@
 # - which is the number of lines in the options file used by jslint script
 
 $decrement = shift;
+$filename = shift;
+
 while(<STDIN>)
 {
 	my($line) = $_;
@@ -11,6 +13,7 @@ while(<STDIN>)
 			$line_num = $1;
 			$line_num = $line_num - $decrement;
 			$line =~ s/Lint at line (\d*)/Lint at line $line_num/g;
+            $line = "$filename:$line";
 	}
 	print $line."\n";
 }

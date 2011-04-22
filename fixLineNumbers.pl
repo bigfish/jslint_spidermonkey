@@ -11,6 +11,7 @@ while(<STDIN>)
 	if($line =~ /Lint at line (\d*)/g ){
 			$line_num = $1;
 			$line_num = $line_num - $decrement;
+			$line_num = $line_num - 1;
 			$line =~ s/Lint at line (\d*)/Lint at line $line_num/g;
 	}
 	print $line."\n";

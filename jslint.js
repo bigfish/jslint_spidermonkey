@@ -18,7 +18,6 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-
 // JSLINT is a global function. It takes two parameters.
 //     var myResult = JSLINT(source, option);
 // The first parameter is either a string or an array of strings. If it is a
@@ -6277,3 +6276,41 @@ var JSLINT = (function () {
     return itself;
 
 }());
+
+(function (a) {
+
+    var input = "";
+    var line = "";
+    var blankcount = "0";
+    while (blankcount < 10) {
+        line = readline();
+
+        if (line == "") blankcount++;
+        else blankcount = 0;
+        if (line == "END") break;
+        input += line;
+        input += "\n";
+    }
+    input = input.substring(0, input.length - blankcount);
+
+    if (!input) {
+        print("No input!");
+        quit(1);
+    }
+    if (!JSLINT(input, {
+        rhino: true,
+        passfail: false
+    })) {
+        for (var i = 0; i < JSLINT.errors.length; i += 1) {
+            var e = JSLINT.errors[i];
+            if (e) {
+                print('Lint at line ' + (e.line + 1) + ' character ' + (e.character + 1) + ': ' + e.reason);
+                print((e.evidence || '').replace(/^\s*(\S*(\s+\S+)*)\s*$/, "$1"));
+                print('');
+            }
+        }
+    } else {
+        print("jslint: No problems found.");
+        quit();
+    }
+})(arguments);
